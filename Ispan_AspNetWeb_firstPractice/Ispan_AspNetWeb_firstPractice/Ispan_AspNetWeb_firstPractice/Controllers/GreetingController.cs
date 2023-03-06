@@ -47,6 +47,7 @@ namespace Ispan_AspNetWeb_firstPractice.Controllers
 
         public string addToCart()
         {
+            // Demo Request
             // http://localhost:61327/Greeting/addToCart/?pid=1
             string id = Request.QueryString["pid"];
             if (id == "0")
@@ -57,5 +58,49 @@ namespace Ispan_AspNetWeb_firstPractice.Controllers
                 return "Switch 加入購物車成功";
             return "找不到該產品資料";
         }
+
+        public string demoParameters(int? pid)
+        {
+            // int? 才不會因為沒參數當掉
+            // Demo Request
+            // http://localhost:61327/Greeting/demoParameters/?pid=0
+            if (pid == 0)
+                return "XBox 加入購物車成功";
+            if (pid == 1)
+                return "PS5 加入購物車成功";
+            if (pid == 2)
+                return "Switch 加入購物車成功";
+            return "找不到該產品資料";
+        }
+
+        public string demoParameterId(int? id)
+        {
+            // int? 才不會因為沒參數當掉
+            // Demo Request
+            // http://localhost:61327/Greeting/demoParameterId/1
+            if (id == 0)
+                return "XBox 加入購物車成功";
+            if (id == 1)
+                return "PS5 加入購物車成功";
+            if (id == 2)
+                return "Switch 加入購物車成功";
+            return "找不到該產品資料";
+        }
+
+        public string demoServer()
+        {
+            return "目前伺服器上的實體位置：" + Server.MapPath(".");
+            // C:\Users\User\Documents\Github\Ispan_MVCweb_pracitce\Ispan_AspNetWeb_firstPractice\Ispan_AspNetWeb_firstPractice\Ispan_AspNetWeb_firstPractice\Greeting
+        }
+        public string demoResponse()
+        {
+            Response.Clear();
+            Response.ContentType = "application/octet-stream";
+            Response.Filter.Close();
+            Response.WriteFile(@"C:\Users\User\Documents\Github\Ispan_MVCweb_pracitce\Ispan_AspNetWeb_firstPractice\Ispan_AspNetWeb_firstPractice\Ispan_AspNetWeb_firstPractice\Resource\images\01.jpg");
+            Response.End();
+            return "";
+        }
+
     }
 }
