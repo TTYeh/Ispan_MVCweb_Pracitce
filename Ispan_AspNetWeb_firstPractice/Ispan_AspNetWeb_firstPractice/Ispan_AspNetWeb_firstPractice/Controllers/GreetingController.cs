@@ -10,7 +10,11 @@ namespace Ispan_AspNetWeb_firstPractice.Controllers
     public class GreetingController : Controller
     {
         // GET: Greeting
-
+        public ActionResult showView()
+        {
+            return View();
+        
+        }
         public string queryById(int? id)
         {
             // http://localhost:61327/Greeting/queryById/1
