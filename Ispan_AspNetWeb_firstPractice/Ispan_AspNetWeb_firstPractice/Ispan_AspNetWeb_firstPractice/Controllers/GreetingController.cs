@@ -25,7 +25,9 @@ namespace Ispan_AspNetWeb_firstPractice.Controllers
             SqlDataReader reader = cmd.ExecuteReader();
             string s = "查無任何資料";
             if (reader.Read())
-                s = reader["fName"].ToString() + " / " + reader["fPhone"].ToString();
+                // 這個不行
+                //s = reader["fName"].ToString() + " /r/n " + reader["fPhone"].ToString();
+                s = reader["fName"].ToString() + " <br>" + reader["fPhone"].ToString();
             con.Close();
             return s;
 
