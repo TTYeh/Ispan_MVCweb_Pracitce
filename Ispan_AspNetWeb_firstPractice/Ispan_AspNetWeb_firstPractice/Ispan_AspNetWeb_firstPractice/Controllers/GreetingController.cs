@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -9,6 +10,26 @@ namespace Ispan_AspNetWeb_firstPractice.Controllers
     public class GreetingController : Controller
     {
         // GET: Greeting
+
+        public string queryById(int? id)
+        {
+            // http://localhost:61327/Greeting/queryById/1
+            if (id == null) {
+                return "沒有傳入參數";
+            }
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = @"Data Source=.;Initial Catalog=dbDemo;Integrated Security=True";
+            con.Open();
+            SqlCommand cmd = new SqlCommand(
+                "SELECT * FROM Customers WHERE fId=" + id.ToString(), con);
+            SqlDataReader reader = cmd.ExecuteReader();
+            string s = "查無任何資料";
+            if (reader.Read())
+                s = reader["fName"].ToString() + " / " + reader["fPhone"].ToString();
+            con.Close();
+            return s;
+
+        }
         public ActionResult Index()
         {
             return View();
