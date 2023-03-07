@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "showView";
+    string photo = "0.jpg";
+    if (ViewBag.message != null)
+    {
+        photo = ViewBag.customer.fId + ".jpg";
+    }
+}
+
+<h3>客戶資料查詢</h3>
+<br />
+@{
+    //if (string.IsNullOrEmpty(ViewBag.customer))
+    @*if (ViewBag.customer)
+    {
+        <h3>沒有任何資料</h3>
+    }
+    else*@
+    {
+        <img src="~/images/@photo" alt="1" />
+        <h3>@ViewBag.customer.fName</h3>
+        <h3>@ViewBag.customer.fAddress</h3>
+    }
+
+
+
+}
+<img src="~/images/1.jpg" alt="1" />
+<h3>@ViewBag.message</h3>
+
+
+

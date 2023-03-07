@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Ispan_AspNetWeb_firstPractice.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 
@@ -10,10 +12,47 @@ namespace Ispan_AspNetWeb_firstPractice.Controllers
     public class GreetingController : Controller
     {
         // GET: Greeting
-        public ActionResult showView()
+        public ActionResult showById(int? id)
         {
+            // http://localhost:61327/Greeting/showById/1
+            if (id == null)
+            {
+                ViewBag.message = "沒有傳入ID參數";
+            }
+            using (SqlConnection con = new SqlConnection())
+            {
+                con.ConnectionString = @"Data Source=.;Initial Catalog=dbDemo;Integrated Security=True";
+                using (var cmd = con.CreateCommand())
+                {
+                    con.Open();
+                    //cmd.CommandText = "SELECT * FROM Customers WHERE fId =" + id.ToString();
+                    cmd.CommandText = "SELECT* FROM Customers WHERE fId = 1";
+                    ViewBag.message = "查無任何資料";
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        CCustomer c = new CCustomer()
+                        {
+                            fId = (int) reader["fId"],
+                            fName = reader["fName"].ToString(),
+                            fAddress = reader["fAddress"].ToString()
+                            
+                        };
+                        ViewBag.customer = c;
+
+                    }
+                    return View();
+                }
+
+            }
+
+        }
+
+
+        public ActionResult showView(int? id)
+        {
+            ViewBag.message = "Hello world";
             return View();
-        
         }
         public string queryById(int? id)
         {
