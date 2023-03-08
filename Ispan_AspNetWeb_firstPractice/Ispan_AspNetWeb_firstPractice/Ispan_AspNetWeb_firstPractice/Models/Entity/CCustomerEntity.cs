@@ -5,12 +5,17 @@ using System.Web;
 
 namespace Ispan_AspNetWeb_firstPractice.Models
 {
-    public class CCustomer
+    public class CCustomerEntity
     {
         public int fId { get; set; }
         public string fName { get; set; }
 
+        public string fPhone { get; set; }
+
+        public string fEmail { get; set; }
+
         public string fAddress { get; set; }
 
+        public string fPassword { get; set; }
     }
 }

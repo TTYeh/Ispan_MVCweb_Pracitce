@@ -37,8 +37,11 @@ namespace ispan.Estore.SqlDataLayer
         }
 
         public static SqlConnection GetConnection()
-        { 
+        {
             return GetConnection("default");
+            //string connStr = GetConnectionString(@"Data Source=.;Initial Catalog=dbDemo;Integrated Security=True");
+            //return new SqlConnection(connStr); //建立一個sql connection物件並傳回
+
         }
         public static SqlConnection GetConnection(string keyOfConnString)
         {

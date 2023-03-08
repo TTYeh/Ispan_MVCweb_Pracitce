@@ -11,7 +11,42 @@ namespace Ispan_AspNetWeb_firstPractice.Controllers
 {
     public class GreetingController : Controller
     {
+        CCustomerRepo repo = new CCustomerRepo();
         // GET: Greeting
+        public string Create()
+        {
+            CCustomerEntity entity = new CCustomerEntity()
+            {
+                fId = 3,
+                fName = "王小明",
+                fPhone = "0912345678",
+                fEmail = "123@gmail.com",
+                fAddress = "Taiwan",
+                fPassword = "x123456"
+            };
+            int newId = repo.Create(entity);
+            return $"新增資料成功?{newId}";
+        }
+        public string DeleteById(int? userId) 
+        {
+            {
+                int rowAffected = 0;
+                if (userId != null)
+                {
+                    rowAffected = repo.Delete((int)userId);
+                } 
+                if (rowAffected > 0)
+                {
+                    ViewBag.message = $"刪除成功，被影響資料:{rowAffected}";
+                }
+                else
+                {
+                    ViewBag.message = "刪除失敗";
+                }
+            }
+            return ViewBag.message;
+        }
+        
         public ActionResult showById(int? id)
         {
             // http://localhost:61327/Greeting/showById/1
@@ -31,7 +66,7 @@ namespace Ispan_AspNetWeb_firstPractice.Controllers
                     SqlDataReader reader = cmd.ExecuteReader();
                     if (reader.Read())
                     {
-                        CCustomer c = new CCustomer()
+                        CCustomerEntity c = new CCustomerEntity()
                         {
                             fId = (int) reader["fId"],
                             fName = reader["fName"].ToString(),

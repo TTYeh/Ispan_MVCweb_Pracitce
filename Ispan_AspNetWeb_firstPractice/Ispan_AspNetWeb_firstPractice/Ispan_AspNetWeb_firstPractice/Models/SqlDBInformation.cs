@@ -1,120 +1,122 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.IO;
-using System.Linq;
-using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+﻿//using system;
+//using system.collections.generic;
+//using system.data.sqlclient;
+//using system.io;
+//using system.linq;
+//using system.security.principal;
+//using system.text;
+//using system.threading.tasks;
+//using system.xml.linq;
 
-namespace ispan.Estore.SqlDataLayer
-{
-    public class SqlDBInformation
-    {
+//namespace ispan.estore.sqldatalayer
+//{
+//    public class sqldbinformation
+//    {
 
-        public IEnumerable<DbColumnInfoEntity> GetColumnsInf(int? categoryId = null, string prodName = null)
-        {
-            // 方便debug用的
-            SqlDB.ApplicationName = "Demo:search products";
-            // return null;
+//        public ienumerable<dbcolumninfoentity> getcolumnsinf(int? categoryid = null, string prodname = null)
+//        {
+//            // 方便debug用的
+//            sqldb.applicationname = "demo:search products";
+//            // return null;
 
-            #region 生成 sql statement
-            string sql = $@"
-SELECT TABLE_NAME, COLUMN_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH
-FROM INFORMATION_SCHEMA.COLUMNS
-";
+//            #region 生成 sql statement
+//            string sql = $@"
+//select table_name, column_name, data_type, character_maximum_length
+//from information_schema.columns
+//";
 
-            #endregion
-            return SqlDB.Search(SqlDB.GetConnection, DbColumnInfoEntity.GetInstance, sql);
-        }
+//            #endregion
+//            return sqldb.search(sqldb.getconnection, dbcolumninfoentity.getinstance, sql);
+//        }
 
-        public IEnumerable<DbColumnInfoEntity> GetDistTableInf(int? categoryId = null, string prodName = null)
-        {
-            // 方便debug用的
-            SqlDB.ApplicationName = "Demo:search products";
-            // return null;
+//        public ienumerable<dbcolumninfoentity> getdisttableinf(int? categoryid = null, string prodname = null)
+//        {
+//            // 方便debug用的
+//            sqldb.applicationname = "demo:search products";
+//            // return null;
 
-            #region 生成 sql statement
-            string sql = $@"
-SELECT distinct TABLE_NAME
-FROM INFORMATION_SCHEMA.COLUMNS
-";
+//            #region 生成 sql statement
+//            string sql = $@"
+//select distinct table_name
+//from information_schema.columns
+//";
 
-            #endregion
-            return SqlDB.Search(SqlDB.GetConnection, DbColumnInfoEntity.GetInstance, sql);
-        }
+//            #endregion
+//            return sqldb.search(sqldb.getconnection, dbcolumninfoentity.getinstance, sql);
+//        }
 
-        public static void SaveFile(string content, string fileName)
-        {
-            FileStream fs = new FileStream($@"..\..\{fileName}.txt", FileMode.Create);
-            StreamWriter streamWriter = new StreamWriter(fs, Encoding.Default);
-            streamWriter.Write(content);
-            streamWriter.Close();
-            fs.Close();
-        }
+//        public static void savefile(string content, string filename)
+//        {
+//            filestream fs = new filestream($@"..\..\{filename}.txt", filemode.create);
+//            streamwriter streamwriter = new streamwriter(fs, encoding.default);
+//            streamwriter.write(content);
+//            streamwriter.close();
+//            fs.close();
+//        }
 
-        public void InfoAnalysis() {
-            var dbInfos = GetColumnsInf().ToList();
-            //Dictionary<string, List<string>> dic = new Dictionary<string, List<string>>();
-            // 1. 先得到所有的table名稱
-            List<string> tableDistict = new List<string>();
-            foreach (var dbInfo in dbInfos)
-            {
-                if (! tableDistict.Contains(dbInfo.TABLE_NAME))
-                {
-                    tableDistict.Add(dbInfo.TABLE_NAME);
-                }
-            }
-            // 2. 讀取樣本檔案
-            var a = dbInfos;
-            string fileName = $@"C:\Users\TTyeh\Documents\GitHub\ADO_NET_Practice\ADO_NET_Sol\ispan.Estore.SqlDataLayer\templateRepository.txt";
-            string fileContent = File.ReadAllText(fileName);
+//        public void infoanalysis()
+//        {
+//            var dbinfos = getcolumnsinf().tolist();
+//            //dictionary<string, list<string>> dic = new dictionary<string, list<string>>();
+//            // 1. 先得到所有的table名稱
+//            list<string> tabledistict = new list<string>();
+//            foreach (var dbinfo in dbinfos)
+//            {
+//                if (!tabledistict.contains(dbinfo.table_name))
+//                {
+//                    tabledistict.add(dbinfo.table_name);
+//                }
+//            }
+//            // 2. 讀取樣本檔案
+//            var a = dbinfos;
+//            string filename = $@"c:\users\ttyeh\documents\github\ado_net_practice\ado_net_sol\ispan.estore.sqldatalayer\templaterepository.txt";
+//            string filecontent = file.readalltext(filename);
 
-            // 3. 單一table的塞資料
-            string tempTable = tableDistict[0];
-            List<string> columnsDistict = new List<string>();
-            foreach (var dbInfo in dbInfos)
-            {
-                if (tempTable == dbInfo.TABLE_NAME)
-                {
-                    columnsDistict.Add(dbInfo.TABLE_NAME);
-                }
-            }
-            // 3.1 改變tableName
-            // 3.2 改變parameters
-            // 3.3 改變entity的參數
-            fileContent.Replace("UserRepository", $"{tempTable}Repository");
-            fileContent.Replace("Users", $"{tempTable}");
-            //(Name, Account, Password, DateBirth, Height, Email)
-            // 4. 塞N次
-            // 5. 存檔
-            SaveFile(fileContent, $"{tempTable}Repository");
-
-
-
-
-        }
-
-    }
-    public class DbColumnInfoEntity {
-        public string TABLE_NAME { get; set; }
-        public string COLUMN_NAME { get; set; }
-        public string DATA_TYPE { get; set; }
-        public int CHARACTER_MAXIMUM_LENGTH { get; set; }
-            
-        public static DbColumnInfoEntity GetInstance(SqlDataReader reader)
-        {
-            var entity = new DbColumnInfoEntity();
-            entity.TABLE_NAME = reader.GetFieldValue<string>("TABLE_NAME");
-            entity.COLUMN_NAME = reader.GetFieldValue<string>("COLUMN_NAME");
-            entity.DATA_TYPE = reader.GetFieldValue<string>("DATA_TYPE");
-            entity.CHARACTER_MAXIMUM_LENGTH = reader.GetFieldValue<int>("CHARACTER_MAXIMUM_LENGTH");
+//            // 3. 單一table的塞資料
+//            string temptable = tabledistict[0];
+//            list<string> columnsdistict = new list<string>();
+//            foreach (var dbinfo in dbinfos)
+//            {
+//                if (temptable == dbinfo.table_name)
+//                {
+//                    columnsdistict.add(dbinfo.table_name);
+//                }
+//            }
+//            // 3.1 改變tablename
+//            // 3.2 改變parameters
+//            // 3.3 改變entity的參數
+//            filecontent.replace("userrepository", $"{temptable}repository");
+//            filecontent.replace("users", $"{temptable}");
+//            //(name, account, password, datebirth, height, email)
+//            // 4. 塞n次
+//            // 5. 存檔
+//            savefile(filecontent, $"{temptable}repository");
 
 
-            return entity;
-        }
 
-    }
 
-}
+//        }
+
+//    }
+//    public class dbcolumninfoentity
+//    {
+//        public string table_name { get; set; }
+//        public string column_name { get; set; }
+//        public string data_type { get; set; }
+//        public int character_maximum_length { get; set; }
+
+//        public static dbcolumninfoentity getinstance(sqldatareader reader)
+//        {
+//            var entity = new dbcolumninfoentity();
+//            entity.table_name = reader.getfieldvalue<string>("table_name");
+//            entity.column_name = reader.getfieldvalue<string>("column_name");
+//            entity.data_type = reader.getfieldvalue<string>("data_type");
+//            entity.character_maximum_length = reader.getfieldvalue<int>("character_maximum_length");
+
+
+//            return entity;
+//        }
+
+//    }
+
+//}

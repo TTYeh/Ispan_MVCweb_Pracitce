@@ -104,7 +104,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CCustomer.cs" />
+    <Compile Include="Models\Entity\CCustomerEntity.cs" />
+    <Compile Include="Models\CCustomerRepo.cs" />
+    <Compile Include="Models\SqlDataReaderExtensions.cs" />
+    <Compile Include="Models\SqlDB.cs" />
+    <Compile Include="Models\SqlDBInformation.cs" />
+    <Compile Include="Models\SqlParameterBuilder.cs" />
+    <Compile Include="Models\UserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
