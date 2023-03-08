@@ -12,7 +12,23 @@ namespace Ispan_AspNetWeb_firstPractice.Controllers
     public class GreetingController : Controller
     {
         CCustomerRepo repo = new CCustomerRepo();
+        public ActionResult DemoUQE() {
+            ViewBag.Ans = "?";
+            if (!string.IsNullOrEmpty(Request.Form["txtA"]))
+            {
+                double a = Convert.ToInt32(Request.Form["txtA"]);
+                double b = Convert.ToInt32(Request.Form["txtB"]);
+                double c = Convert.ToInt32(Request.Form["txtC"]);
+                double r = b * b - 4 * a * c;
+                ViewBag.a = a;
+                ViewBag.b = b;
+                ViewBag.c = c;
+                r = Math.Sqrt(r);
 
+                ViewBag.Ans = ((-b + r) / (2 * a)).ToString("0.0#") + " Or X=" + ((-b - r) / (2 * a)).ToString();
+            }
+            return View();
+        }
         public ActionResult DemoAdd() {
             ViewBag.ANS = "?";
             if (Request.Form["num1"] != null || Request.Form["num1"] != string.Empty)

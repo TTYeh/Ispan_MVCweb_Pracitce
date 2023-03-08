@@ -9,7 +9,26 @@ namespace Ispan_AspNetWeb_firstPractice.Controllers
 {
     public class CustomerController : Controller
     {
-        // GET: Customer
+        public ActionResult Delete(int? id) {
+            if (id != null)
+            {
+                new CCustomerRepo().Delete((int)id);
+            }
+            return RedirectToAction("ListAll");
+        }
+        public ActionResult Save()
+        {
+            var data = new CCustomerEntity() 
+            {
+                fName = Request.Form["cName"],
+                fPhone = Request.Form["cPhone"],
+                fEmail = Request.Form["cEmail"],
+                fAddress = Request.Form["cAddress"],
+                fPassword = Request.Form["cPassword"]
+            };
+            var res = new CCustomerRepo().Create(data);
+            return RedirectToAction("ListAll");
+        }
         public ActionResult ListAll()
         {
             var data = new CCustomerRepo().GetAll();

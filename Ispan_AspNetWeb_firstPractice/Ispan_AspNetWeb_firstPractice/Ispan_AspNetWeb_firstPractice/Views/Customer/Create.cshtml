@@ -2,30 +2,23 @@
 @{
     ViewBag.Title = "Create";
 }
-<form method="post">
-    <h3>請輸入數字</h3>
-    
+<form action="~/Customer/Save" method="post">
+    <p>
+        <br />姓名<input type="text" name="cName" />
 
-    
-</form>
-<h2>新增客戶資料</h2>
-<label>客戶姓名</label>
-<label>客戶姓名</label>
-<label>客戶姓名</label>
-<label>客戶姓名</label>
-<label>客戶姓名</label>
+        <br />電話<input type="text" name="cPhone" />
 
-<input type="text" id="cId" />
-<input type="text" id="cName" />
-<input type="text" id="cPhone" />
-<input type="text" id="cEmail" />
-<input type="text" id="cAddress" />
-<input type="text" id="cPassword" />
+        <br />電子郵件<input type="text" name="cEmail" />
 
-<input type="submit" id="btnSubmit" />
+        <br />地址<input type="text" name="cAddress" />
 
+        <br />密碼<input type="text" name="cPassword" />
 
+        <br />
+        <input type="submit" value="送出" />
 
+    </p>
+</form >
 
 
 
