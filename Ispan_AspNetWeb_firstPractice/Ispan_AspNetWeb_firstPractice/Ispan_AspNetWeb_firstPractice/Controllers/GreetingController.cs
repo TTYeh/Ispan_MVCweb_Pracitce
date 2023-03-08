@@ -12,6 +12,18 @@ namespace Ispan_AspNetWeb_firstPractice.Controllers
     public class GreetingController : Controller
     {
         CCustomerRepo repo = new CCustomerRepo();
+
+        public ActionResult DemoAdd() {
+            ViewBag.ANS = "?";
+            if (Request.Form["num1"] != null || Request.Form["num1"] != string.Empty)
+            { 
+                double a = Convert.ToDouble(Request.Form["num1"]);
+                double b = Convert.ToDouble(Request.Form["num2"]);
+                ViewBag.ANS = a + b;
+            }
+            return View();
+        }
+        
         // GET: Greeting
         public string Update(int? id)
         {
