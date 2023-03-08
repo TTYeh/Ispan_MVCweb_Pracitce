@@ -13,6 +13,38 @@ namespace Ispan_AspNetWeb_firstPractice.Models
         private readonly string _tableName = "Customers";
         public Func<SqlConnection> funConn = SqlDB.GetConnection;
         public Func<SqlDataReader, CCustomerEntity> funcAssembler = CCustomerRepo.GetInstance;
+        public List<CCustomerEntity> GetAll()
+        //public string GetAll()
+        {
+            var result = new List<CCustomerEntity>();
+            string temp = string.Empty;
+            using (SqlConnection con = new SqlConnection())
+            {
+                con.ConnectionString = @"Data Source=.;Initial Catalog=dbDemo;Integrated Security=True";
+                using (var cmd = con.CreateCommand())
+                {
+                    con.Open();
+                    cmd.CommandText = "SELECT * FROM Customers";
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        CCustomerEntity c = new CCustomerEntity()
+                        {
+                            fId = (int)reader["fId"],
+                            fName = reader["fName"].ToString(),
+                            fPhone = reader["fPhone"].ToString(),
+                            fEmail = reader["fEmail"].ToString(),
+                            fAddress = reader["fAddress"].ToString(),
+                            fPassword = reader["fPassword"].ToString()
+                        };
+                        result.Add(c);
+                        temp += c.ToString();
+                        temp += "<br>";
+                    }
+                }
+            }
+            return result;
+        }
         public static CCustomerEntity GetInstance(SqlDataReader reader)
         {
             var entity = new CCustomerEntity();

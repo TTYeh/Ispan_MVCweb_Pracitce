@@ -100,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\GreetingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -120,6 +121,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Greeting\showView.cshtml" />
     <Content Include="Views\Greeting\showById.cshtml" />
+    <Content Include="Views\Customer\ListAll.cshtml" />
+    <Content Include="Views\Customer\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

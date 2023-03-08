@@ -1,0 +1,42 @@
+﻿@using Ispan_AspNetWeb_firstPractice.Models;
+@model List<Ispan_AspNetWeb_firstPractice.Models.CCustomerEntity>
+
+
+@{
+    ViewBag.Title = "ListAll";
+}
+<a href="~/Customer/Create">新增客戶資料</a>
+<h2>客戶資料一覽表</h2>
+<p>
+    <table border="1">
+        <tr>
+            <td>序</td>
+            <td>姓名</td>
+            <td>電話</td>
+            <td>電子郵件</td>
+            <td>地址</td>
+            <td>密碼</td>
+        </tr>
+        @{
+            int count = 0;
+            foreach (var item in Model)
+            {
+                count++;
+                <tr>
+                    <td>@count</td>
+                    <td>@item.fName</td>
+                    <td>@item.fPhone</td>
+                    <td>@item.fEmail</td>
+                    <td>@item.fAddress</td>
+                    <td>@item.fPassword</td>
+                </tr>
+            }
+
+        }
+
+    </table>
+</p>
+
+
+
+@*要怎麼弄出多個變數出來?*@
