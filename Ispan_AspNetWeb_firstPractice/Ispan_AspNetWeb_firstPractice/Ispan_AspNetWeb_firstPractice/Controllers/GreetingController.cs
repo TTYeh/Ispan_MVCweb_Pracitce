@@ -13,11 +13,28 @@ namespace Ispan_AspNetWeb_firstPractice.Controllers
     {
         CCustomerRepo repo = new CCustomerRepo();
         // GET: Greeting
+        public string Update(int? id)
+        {
+            if (id == null)
+            {
+                return "沒有傳入參數";
+            }
+            CCustomerEntity entity = new CCustomerEntity()
+            {
+                fId = (int)id,
+                fName = "隔壁老王",
+                fPhone = "09878787",
+                fEmail = "8787@gmail.com",
+                fAddress = "Taiwan",
+                fPassword = "x123456"
+            };
+            int newId = repo.Update(entity);
+            return $"更新成功?{newId}";
+        }
         public string Create()
         {
             CCustomerEntity entity = new CCustomerEntity()
             {
-                fId = 3,
                 fName = "王小明",
                 fPhone = "0912345678",
                 fEmail = "123@gmail.com",
@@ -27,14 +44,14 @@ namespace Ispan_AspNetWeb_firstPractice.Controllers
             int newId = repo.Create(entity);
             return $"新增資料成功?{newId}";
         }
-        public string DeleteById(int? userId) 
+        public string Delete(int? id)
         {
             {
                 int rowAffected = 0;
-                if (userId != null)
+                if (id != null)
                 {
-                    rowAffected = repo.Delete((int)userId);
-                } 
+                    rowAffected = repo.Delete((int)id);
+                }
                 if (rowAffected > 0)
                 {
                     ViewBag.message = $"刪除成功，被影響資料:{rowAffected}";
@@ -46,7 +63,54 @@ namespace Ispan_AspNetWeb_firstPractice.Controllers
             }
             return ViewBag.message;
         }
+        public string Search(int? id)
+        {
+            if (id == null)
+            {
+                return "沒有傳入參數";
+            }
+            CCustomerEntity entity = repo.GetUser((int)id);
+            if (entity == null)
+            {
+                return "查無資料";
+            }
+            return entity.ToString();
+        }
+
+        //public List<CCustomerEntity> GetAll()
+        public string GetAll()
+        {
+            var result = new List<CCustomerEntity>();
+            string temp = string.Empty;
+            using (SqlConnection con = new SqlConnection())
+            {
+                con.ConnectionString = @"Data Source=.;Initial Catalog=dbDemo;Integrated Security=True";
+                using (var cmd = con.CreateCommand())
+                {
+                    con.Open();
+                    cmd.CommandText = "SELECT * FROM Customers";
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        CCustomerEntity c = new CCustomerEntity()
+                        {
+                            fId = (int)reader["fId"],
+                            fName = reader["fName"].ToString(),
+                            fPhone = reader["fPhone"].ToString(),
+                            fEmail = reader["fEmail"].ToString(),
+                            fAddress = reader["fAddress"].ToString(),
+                            fPassword = reader["fPassword"].ToString()
+                        };
+                        result.Add(c);
+                        temp += c.ToString();
+                        temp += "<br>";
+                    }
+                }
+            }
+            return temp;
+        } 
         
+
         public ActionResult showById(int? id)
         {
             // http://localhost:61327/Greeting/showById/1

@@ -17,5 +17,10 @@ namespace Ispan_AspNetWeb_firstPractice.Models
         public string fAddress { get; set; }
 
         public string fPassword { get; set; }
+
+        public override string ToString() 
+        {
+            return $"fId:{this.fId},fName:{this.fName},fPhone:{this.fPhone},fEmail:{this.fEmail},fAddress:{this.fAddress},fPassword:{this.fPassword}";
+        }
     }
 }

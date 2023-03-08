@@ -58,28 +58,43 @@ VALUES
         public CCustomerEntity GetUser(int userId)
         {
             string sql = $"SELECT * FROM {_tableName} " +
-                $"WHERE Id={userId}";
+                $"WHERE fId={userId}";
             return SqlDB.Get(funConn, funcAssembler, sql);
         }
-        public int Delete(int userId)
+        public int Delete(int userid)
         {
             //string sql = $@"DELETE FROM {_tableName} Where Id = {userId}";
             //int rowAffected = SqlDB.UpdateOrDelete(funConn, sql);
             //return rowAffected;
 
-            string sql = $@"DELETE FROM {_tableName} Where Id = @Id";
+            string sql = $@"DELETE FROM {_tableName} Where fId = @fId";
             var parameters = SqlParameterBuilder.Create()
-            .AddInt("@Id", userId)
+            .AddInt("@fId", userid)
             .Build();
             int rowAffected = SqlDB.UpdateOrDelete(funConn, sql, parameters);
             return rowAffected;
         }
 
+        internal int Update(CCustomerEntity entity)
+        {
+            var sql = $@"UPDATE {_tableName} SET
+fName=@fName,
+fPhone = @fPhone,
+fEmail = @fEmail,
+fAddress = @fAddress,
+fPassword = @fPassword
+WHERE fId={entity.fId}";
 
+            var parameters = SqlParameterBuilder.Create()
+            .AddNVarchar("@fName", entity.fName, 50)
+            .AddNVarchar("@fPhone", entity.fPhone, 50)
+            .AddNVarchar("@fEmail", entity.fEmail, 50)
+            .AddNVarchar("@fAddress", entity.fAddress, 50)
+            .AddNVarchar("@fPassword", entity.fPassword, 50)
+            .Build();
 
-
-
-
-
+            int rowsAffected = SqlDB.UpdateOrDelete(funConn, sql, parameters);
+            return rowsAffected;
+        }
     }
 }
