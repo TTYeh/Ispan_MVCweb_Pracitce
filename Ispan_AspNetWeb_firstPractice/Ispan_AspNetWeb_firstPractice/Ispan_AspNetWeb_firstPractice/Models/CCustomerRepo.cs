@@ -17,6 +17,7 @@ namespace Ispan_AspNetWeb_firstPractice.Models
         {
             var entity = new CCustomerEntity();
             entity.fId = reader.GetFieldValue<int>("fId");
+            entity.fName = reader.GetFieldValue<string>("fName");
             entity.fPhone = reader.GetFieldValue<string>("fPhone");
             entity.fEmail = reader.GetFieldValue<string>("fEmail");
             entity.fAddress = reader.GetFieldValue<string>("fAddress");

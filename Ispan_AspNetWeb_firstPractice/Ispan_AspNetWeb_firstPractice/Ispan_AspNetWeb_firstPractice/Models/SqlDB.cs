@@ -96,9 +96,10 @@ namespace ispan.Estore.SqlDataLayer
                     conn.Open();
                     if(parameters != null) cmd.Parameters.AddRange(parameters);
                     var reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
-                    return reader.Read()
+                    var a = reader.Read()
                         ? funcAssembler(reader)
                         : default(T);
+                    return a;
                 }
 
             }
