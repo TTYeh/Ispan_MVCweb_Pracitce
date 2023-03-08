@@ -125,6 +125,7 @@
     <Content Include="Views\Customer\Create.cshtml" />
     <Content Include="Views\Greeting\DemoAdd.cshtml" />
     <Content Include="Views\Greeting\DemoUQE.cshtml" />
+    <Content Include="Views\Customer\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -88,7 +88,7 @@ VALUES
             }
             return newId;
         }
-        public CCustomerEntity GetUser(int userId)
+        public CCustomerEntity GetById(int userId)
         {
             string sql = $"SELECT * FROM {_tableName} " +
                 $"WHERE fId={userId}";
@@ -129,5 +129,6 @@ WHERE fId={entity.fId}";
             int rowsAffected = SqlDB.UpdateOrDelete(funConn, sql, parameters);
             return rowsAffected;
         }
+
     }
 }

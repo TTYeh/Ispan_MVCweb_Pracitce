@@ -97,7 +97,7 @@ namespace Ispan_AspNetWeb_firstPractice.Controllers
             {
                 return "沒有傳入參數";
             }
-            CCustomerEntity entity = repo.GetUser((int)id);
+            CCustomerEntity entity = repo.GetById((int)id);
             if (entity == null)
             {
                 return "查無資料";

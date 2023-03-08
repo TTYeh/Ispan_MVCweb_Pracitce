@@ -9,6 +9,21 @@ namespace Ispan_AspNetWeb_firstPractice.Controllers
 {
     public class CustomerController : Controller
     {
+        public ActionResult Edit(int? id)
+        {
+            // 這個是Get
+            if (id == null) return RedirectToAction("ListAll");
+            var x = new CCustomerRepo().GetById((int)id);
+            if (x == null) return RedirectToAction("ListAll");
+            return View(x);
+        }
+        [HttpPost]
+        public ActionResult Edit(CCustomerEntity x)
+        {
+            new CCustomerRepo().Update(x);
+            return RedirectToAction("ListAll");
+        }
+
         public ActionResult Delete(int? id) {
             if (id != null)
             {

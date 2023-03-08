@@ -1,0 +1,24 @@
+﻿@model Ispan_AspNetWeb_firstPractice.Models.CCustomerEntity
+@{
+    ViewBag.Title = "Edit";
+}
+
+<form action="~/Customer/Edit" method="post">
+    <p>
+        <input type="hidden" name="fId" value="@Model.fId" />
+        <br />姓名<input type="text" name="fName" value="@Model.fName" />
+
+        <br />電話<input type="text" name="fPhone" value="@Model.fPhone" />
+
+        <br />電子郵件<input type="text" name="fEmail" value="@Model.fEmail"/>
+
+        <br />地址<input type="text" name="fAddress" value="@Model.fAddress" />
+
+        <br />密碼<input type="text" name="fPassword" value="@Model.fPassword" />
+        
+        <br />
+        <input type="submit" value="送出" />
+
+    </p>
+</form>
+
