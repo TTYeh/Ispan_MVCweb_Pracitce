@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ispan_AspNetWeb_firstPractice.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
@@ -12,10 +13,23 @@ namespace Ispan_AspNetWeb_firstPractice.Controllers
         // GET: Product
         public ActionResult List()
         {
+            // 關鍵字會打回來這裡
+            string keyword = Request.Form["txtKeyword"];
             dbDemoEntities1 db = new dbDemoEntities1();
-            var datas = from p in db.Products
-                        select p;
-            return View(datas);
+            IEnumerable<Products> datas = null;
+            if (string.IsNullOrEmpty(keyword))
+            {
+                datas = from p in db.Products
+                            select p;
+                return View(datas);
+            }
+            else
+            {
+                datas = from p in db.Products
+                            where p.fName.Contains(keyword)
+                            select p;
+                return View(datas);
+            }
         }
         public ActionResult Create()
         {
