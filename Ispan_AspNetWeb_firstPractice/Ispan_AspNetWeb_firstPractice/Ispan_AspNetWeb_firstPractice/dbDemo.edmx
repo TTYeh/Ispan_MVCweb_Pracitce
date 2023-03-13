@@ -45,20 +45,9 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dbDemoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Customers">
-          <Key>
-            <PropertyRef Name="fId" />
-          </Key>
-          <Property Name="fId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="fName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="fPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="fEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="fAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="fPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityContainer Name="dbDemoEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Customers" EntityType="Self.Customers" />
           <EntitySet Name="Products" EntityType="dbDemoModel.Products" />
+          <EntitySet Name="Customers" EntityType="dbDemoModel.Customers" />
         </EntityContainer>
         <EntityType Name="Products">
           <Key>
@@ -70,30 +59,41 @@
           <Property Name="fCost" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="fPrice" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="dbDemoModelStoreContainer" CdmEntityContainer="dbDemoEntities1">
-          <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="dbDemoModel.Customers">
-              <MappingFragment StoreEntitySet="Customers">
-                <ScalarProperty Name="fId" ColumnName="fId" />
-                <ScalarProperty Name="fName" ColumnName="fName" />
-                <ScalarProperty Name="fPhone" ColumnName="fPhone" />
-                <ScalarProperty Name="fEmail" ColumnName="fEmail" />
-                <ScalarProperty Name="fAddress" ColumnName="fAddress" />
-                <ScalarProperty Name="fPassword" ColumnName="fPassword" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="dbDemoModel.Products">
               <MappingFragment StoreEntitySet="Products">
                 <ScalarProperty Name="fPrice" ColumnName="fPrice" />
                 <ScalarProperty Name="fCost" ColumnName="fCost" />
                 <ScalarProperty Name="fQty" ColumnName="fQty" />
+                <ScalarProperty Name="fName" ColumnName="fName" />
+                <ScalarProperty Name="fId" ColumnName="fId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="dbDemoModel.Customers">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="fPassword" ColumnName="fPassword" />
+                <ScalarProperty Name="fAddress" ColumnName="fAddress" />
+                <ScalarProperty Name="fEmail" ColumnName="fEmail" />
+                <ScalarProperty Name="fPhone" ColumnName="fPhone" />
                 <ScalarProperty Name="fName" ColumnName="fName" />
                 <ScalarProperty Name="fId" ColumnName="fId" />
               </MappingFragment>

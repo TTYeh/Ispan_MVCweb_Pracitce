@@ -25,7 +25,7 @@ namespace Ispan_AspNetWeb_firstPractice
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Customers> Customers { get; set; }
         public virtual DbSet<Products> Products { get; set; }
+        public virtual DbSet<Customers> Customers { get; set; }
     }
 }
