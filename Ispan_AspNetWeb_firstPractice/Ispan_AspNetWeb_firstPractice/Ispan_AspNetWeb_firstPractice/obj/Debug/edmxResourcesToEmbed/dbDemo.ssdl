@@ -21,8 +21,20 @@
     <Property Name="fCost" Type="money" />
     <Property Name="fPrice" Type="money" />
   </EntityType>
+  <EntityType Name="tshopingCart">
+    <Key>
+      <PropertyRef Name="fId" />
+    </Key>
+    <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="fCustomerId" Type="int" />
+    <Property Name="fProductId" Type="int" />
+    <Property Name="fCount" Type="int" />
+    <Property Name="fPrice" Type="money" />
+  </EntityType>
   <EntityContainer Name="dbDemoModelStoreContainer">
     <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tshopingCart" EntityType="Self.tshopingCart" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>

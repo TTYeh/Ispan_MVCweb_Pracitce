@@ -27,5 +27,6 @@ namespace Ispan_AspNetWeb_firstPractice
     
         public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<Customers> Customers { get; set; }
+        public virtual DbSet<tshopingCart> tshopingCart { get; set; }
     }
 }

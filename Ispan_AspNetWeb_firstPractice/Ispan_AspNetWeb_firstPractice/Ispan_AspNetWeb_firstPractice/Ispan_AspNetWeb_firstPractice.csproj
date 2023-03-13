@@ -121,6 +121,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\GreetingController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ShoppingController.cs" />
     <Compile Include="Customers.cs">
       <DependentUpon>dbDemo.tt</DependentUpon>
     </Compile>
@@ -153,6 +154,9 @@
       <DependentUpon>dbDemo.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="tshopingCart.cs">
+      <DependentUpon>dbDemo.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -176,6 +180,7 @@
     <Content Include="Views\Product\List.cshtml" />
     <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\Shopping\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

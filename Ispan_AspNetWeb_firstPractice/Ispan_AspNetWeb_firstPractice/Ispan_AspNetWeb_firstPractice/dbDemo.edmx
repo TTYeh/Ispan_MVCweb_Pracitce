@@ -26,9 +26,21 @@
           <Property Name="fCost" Type="money" />
           <Property Name="fPrice" Type="money" />
         </EntityType>
+        <EntityType Name="tshopingCart">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="fCustomerId" Type="int" />
+          <Property Name="fProductId" Type="int" />
+          <Property Name="fCount" Type="int" />
+          <Property Name="fPrice" Type="money" />
+        </EntityType>
         <EntityContainer Name="dbDemoModelStoreContainer">
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tshopingCart" EntityType="Self.tshopingCart" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -37,6 +49,7 @@
         <EntityContainer Name="dbDemoEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Products" EntityType="dbDemoModel.Products" />
           <EntitySet Name="Customers" EntityType="dbDemoModel.Customers" />
+          <EntitySet Name="tshopingCart" EntityType="dbDemoModel.tshopingCart" />
         </EntityContainer>
         <EntityType Name="Products">
           <Key>
@@ -58,6 +71,17 @@
           <Property Name="fEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="fAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="fPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tshopingCart">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fCustomerId" Type="Int32" />
+          <Property Name="fProductId" Type="Int32" />
+          <Property Name="fCount" Type="Int32" />
+          <Property Name="fPrice" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -84,6 +108,18 @@
                 <ScalarProperty Name="fEmail" ColumnName="fEmail" />
                 <ScalarProperty Name="fPhone" ColumnName="fPhone" />
                 <ScalarProperty Name="fName" ColumnName="fName" />
+                <ScalarProperty Name="fId" ColumnName="fId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tshopingCart">
+            <EntityTypeMapping TypeName="dbDemoModel.tshopingCart">
+              <MappingFragment StoreEntitySet="tshopingCart">
+                <ScalarProperty Name="fPrice" ColumnName="fPrice" />
+                <ScalarProperty Name="fCount" ColumnName="fCount" />
+                <ScalarProperty Name="fProductId" ColumnName="fProductId" />
+                <ScalarProperty Name="fCustomerId" ColumnName="fCustomerId" />
+                <ScalarProperty Name="fDate" ColumnName="fDate" />
                 <ScalarProperty Name="fId" ColumnName="fId" />
               </MappingFragment>
             </EntityTypeMapping>
