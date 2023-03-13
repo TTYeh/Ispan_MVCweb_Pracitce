@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbDemoModelStoreContainer" CdmEntityContainer="dbDemoEntities1">
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="dbDemoModel.Customers">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="fId" ColumnName="fId" />
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="fPhone" ColumnName="fPhone" />
+          <ScalarProperty Name="fEmail" ColumnName="fEmail" />
+          <ScalarProperty Name="fAddress" ColumnName="fAddress" />
+          <ScalarProperty Name="fPassword" ColumnName="fPassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="dbDemoModel.Products">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="fPrice" ColumnName="fPrice" />
+          <ScalarProperty Name="fCost" ColumnName="fCost" />
+          <ScalarProperty Name="fQty" ColumnName="fQty" />
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="fId" ColumnName="fId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

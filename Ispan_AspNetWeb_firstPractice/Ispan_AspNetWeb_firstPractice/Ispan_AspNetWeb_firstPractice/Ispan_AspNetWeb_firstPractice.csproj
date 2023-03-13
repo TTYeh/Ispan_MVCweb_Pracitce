@@ -43,7 +43,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -93,6 +101,16 @@
       <DependentUpon>dbToDo.mdf</DependentUpon>
     </Content>
     <Content Include="Content\Site.css" />
+    <Content Include="dbDemo.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>dbDemo.edmx</DependentUpon>
+      <LastGenOutput>dbDemo.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="dbDemo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>dbDemo.edmx</DependentUpon>
+      <LastGenOutput>dbDemo.cs</LastGenOutput>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="Images\0.jpg" />
     <Content Include="Images\1.jpg" />
@@ -102,6 +120,25 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\GreetingController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Customers.cs">
+      <DependentUpon>dbDemo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbDemo.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbDemo.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbDemo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbDemo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbDemo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbDemo.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -112,10 +149,20 @@
     <Compile Include="Models\SqlDBInformation.cs" />
     <Compile Include="Models\SqlParameterBuilder.cs" />
     <Compile Include="Models\UserRepository.cs" />
+    <Compile Include="Products.cs">
+      <DependentUpon>dbDemo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
+    <EntityDeploy Include="dbDemo.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>dbDemo.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="dbDemo.edmx.diagram">
+      <DependentUpon>dbDemo.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -126,12 +173,17 @@
     <Content Include="Views\Greeting\DemoAdd.cshtml" />
     <Content Include="Views\Greeting\DemoUQE.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Product\List.cshtml" />
+    <Content Include="Views\Product\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

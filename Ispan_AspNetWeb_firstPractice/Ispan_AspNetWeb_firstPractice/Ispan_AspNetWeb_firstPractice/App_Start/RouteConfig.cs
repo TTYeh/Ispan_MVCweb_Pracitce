@@ -13,10 +13,17 @@ namespace Ispan_AspNetWeb_firstPractice
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            // 這個是惡搞{action}/{controller}
+            //routes.MapRoute(
+            //    name: "Eddy",
+            //    url: "{action}/{controller}/{id}",
+            //    defaults: new { controller = "Product", action = "List", id = UrlParameter.Optional }
+            //);
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Product", action = "List", id = UrlParameter.Optional }
             );
         }
     }
