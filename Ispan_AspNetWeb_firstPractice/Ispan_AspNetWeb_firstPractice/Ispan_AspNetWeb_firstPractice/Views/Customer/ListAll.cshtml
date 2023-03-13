@@ -1,11 +1,24 @@
 ﻿@using Ispan_AspNetWeb_firstPractice.Models;
 @model List<Ispan_AspNetWeb_firstPractice.Models.CCustomerEntity>
-
-
 @{
     ViewBag.Title = "ListAll";
 }
+
+@*@using (Html.BeginForm("Edit", "Customer", FormMethod.Post))
+{
+    @:關鍵字 @:Html.BeginForm{}
+    <input type="text">
+    <input type="submit" value="送出" />
+}*@
+
+@using (Html.BeginForm())
+{
+    @:關鍵字 @Html.TextBox("txtKeyword")
+    <input type="submit" value="查詢" />
+}
+
 <a href="~/Customer/Create">新增客戶資料</a>
+
 <h2>客戶資料一覽表</h2>
 <p>
     <table border="1">
