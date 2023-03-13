@@ -20,6 +20,7 @@ namespace Ispan_AspNetWeb_firstPractice.Controllers
         [HttpPost]
         public ActionResult Edit(CCustomerEntity x)
         {
+            // 這是post 確認存檔的內容
             new CCustomerRepo().Update(x);
             return RedirectToAction("ListAll");
         }
@@ -46,9 +47,30 @@ namespace Ispan_AspNetWeb_firstPractice.Controllers
         }
         public ActionResult ListAll()
         {
-            var data = new CCustomerRepo().GetAll();
-            return View(data);
+            // 關鍵字會打回來這裡
+            string keyword = Request.Form["txtKeyword"];
+            List<CCustomerEntity> datas = null;
+            if (string.IsNullOrEmpty(keyword))
+            {
+                datas = new CCustomerRepo().GetAll();
+            }
+            else 
+            { 
+                datas = new CCustomerRepo().queryByKeyword(keyword);
+            }
+            return View(datas);
         }
+        //public ActionResult List()
+        //{
+        //    string keyword = Request.Form["txtKeyword"];
+        //    List<CCustomerEntity> datas = null;
+        //    if (string.IsNullOrEmpty(keyword))
+        //    {
+        //        datas = new CCustomerRepo().GetAll();
+        //    }
+        //    datas = new CCustomerRepo().queryByKeyword(keyword);
+        //    return View(datas);
+        //}
         public ActionResult Create() 
         {
 

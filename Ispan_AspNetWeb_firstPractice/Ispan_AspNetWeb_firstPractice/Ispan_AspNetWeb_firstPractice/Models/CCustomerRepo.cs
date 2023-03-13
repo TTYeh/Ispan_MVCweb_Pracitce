@@ -130,5 +130,15 @@ WHERE fId={entity.fId}";
             return rowsAffected;
         }
 
+        internal List<CCustomerEntity> queryByKeyword(string keyword)
+        {
+            string sql = $"SELECT * FROM {_tableName} " +
+            $"WHERE fName like '%{keyword}%'" +
+            $"or fPhone like '%{keyword}%' " +
+            $"or fEmail like '%{keyword}%' " +
+            $"or fAddress like '%{keyword}%' ";
+            return SqlDB.Search(funConn, funcAssembler, sql).ToList();
+        }
+
     }
 }
