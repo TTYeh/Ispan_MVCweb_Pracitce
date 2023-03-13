@@ -14,14 +14,14 @@
 @using (Html.BeginForm())
 {
     @:關鍵字 @Html.TextBox("txtKeyword")
-    <input type="submit" value="查詢" />
+    <input type="submit" value="查詢" class="btn btn-primary" />
 }
 
 <a href="~/Customer/Create">新增客戶資料</a>
 
 <h2>客戶資料一覽表</h2>
 <p>
-    <table border="1">
+    <table border="1" class="table table-dark table-striped">
         <tr>
             <td>序</td>
             <td>姓名</td>
@@ -47,9 +47,9 @@
                     <td>@item.fAddress</td>
                     <td>@item.fPassword</td>
                     @*掃網址Get*@
-                    <td>@Html.ActionLink("編輯", "Edit", "Customer", new { id = item.fId }, null)</td>
+                    <td>@Html.ActionLink("編輯", "Edit", "Customer", new { id = item.fId }, new {@class = "btn btn-success"})</td>
                     <td><a href="~/Customer/Delete/@item.fId">刪除</a></td>
-                    <td>@Html.ActionLink("刪除", "Delete", "Customer", new { id = item.fId }, new { onclick = "return confirm('確定要刪除嗎?')" })</td>
+                    <td>@Html.ActionLink("刪除", "Delete", "Customer", new { id = item.fId }, new { onclick = "return confirm('確定要刪除嗎?')"  , @class = "btn btn-danger" })</td>
                 </tr>
             }
 
