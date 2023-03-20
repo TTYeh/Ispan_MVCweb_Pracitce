@@ -20,6 +20,7 @@
     <Property Name="fQty" Type="int" />
     <Property Name="fCost" Type="money" />
     <Property Name="fPrice" Type="money" />
+    <Property Name="fPhotoPath" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="tshopingCart">
     <Key>

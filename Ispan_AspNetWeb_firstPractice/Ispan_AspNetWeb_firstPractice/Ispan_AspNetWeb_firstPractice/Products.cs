@@ -11,7 +11,8 @@ namespace Ispan_AspNetWeb_firstPractice
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web;
+
     public partial class Products
     {
         public int fId { get; set; }
@@ -19,5 +20,8 @@ namespace Ispan_AspNetWeb_firstPractice
         public Nullable<int> fQty { get; set; }
         public Nullable<decimal> fCost { get; set; }
         public Nullable<decimal> fPrice { get; set; }
+        public string fPhotoPath { get; set; }
+
+        public HttpPostedFileBase photo { get; set;}
     }
 }

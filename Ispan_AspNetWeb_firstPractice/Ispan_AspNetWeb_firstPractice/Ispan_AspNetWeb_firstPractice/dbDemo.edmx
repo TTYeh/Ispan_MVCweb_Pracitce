@@ -25,6 +25,7 @@
           <Property Name="fQty" Type="int" />
           <Property Name="fCost" Type="money" />
           <Property Name="fPrice" Type="money" />
+          <Property Name="fPhotoPath" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tshopingCart">
           <Key>
@@ -60,6 +61,7 @@
           <Property Name="fQty" Type="Int32" />
           <Property Name="fCost" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="fPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="fPhotoPath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Customers">
           <Key>
@@ -92,6 +94,7 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="dbDemoModel.Products">
               <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="fPhotoPath" ColumnName="fPhotoPath" />
                 <ScalarProperty Name="fPrice" ColumnName="fPrice" />
                 <ScalarProperty Name="fCost" ColumnName="fCost" />
                 <ScalarProperty Name="fQty" ColumnName="fQty" />

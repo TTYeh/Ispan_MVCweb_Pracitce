@@ -70,6 +70,13 @@ namespace Ispan_AspNetWeb_firstPractice.Controllers
             dbDemoEntities1 db = new dbDemoEntities1();
             Products prod = db.Products.FirstOrDefault(p => p.fId == pIn.fId);
             if (prod == null) return RedirectToAction("List");
+            if (pIn.photo != null) 
+            { 
+                string fileName = Guid.NewGuid().ToString() + ".jpg";
+                pIn.photo.SaveAs(Server.MapPath("../../Images/" + fileName));
+                string a = Server.MapPath("../../Images" + fileName);
+                prod.fPhotoPath = fileName;
+            }
             prod.fName = pIn.fName;
             prod.fPrice = pIn.fPrice;
             prod.fQty = pIn.fQty;
