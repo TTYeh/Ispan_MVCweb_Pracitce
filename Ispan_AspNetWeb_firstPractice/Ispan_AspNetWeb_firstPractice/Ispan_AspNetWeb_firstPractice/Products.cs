@@ -11,17 +11,20 @@ namespace Ispan_AspNetWeb_firstPractice
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     using System.Web;
 
     public partial class Products
     {
         public int fId { get; set; }
+        [DisplayName("產品名稱")]
+        [Required(ErrorMessage ="RRRRRRRRRRRRR")]
         public string fName { get; set; }
         public Nullable<int> fQty { get; set; }
         public Nullable<decimal> fCost { get; set; }
         public Nullable<decimal> fPrice { get; set; }
         public string fPhotoPath { get; set; }
-
         public HttpPostedFileBase photo { get; set;}
     }
 }

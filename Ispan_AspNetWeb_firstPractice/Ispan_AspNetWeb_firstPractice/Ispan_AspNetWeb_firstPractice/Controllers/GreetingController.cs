@@ -9,9 +9,38 @@ using System.Web.Mvc;
 
 namespace Ispan_AspNetWeb_firstPractice.Controllers
 {
+    
     public class GreetingController : Controller
     {
         CCustomerRepo repo = new CCustomerRepo();
+
+        public ActionResult ShowCountBySession()
+        {
+            int count = 0;
+            if (Session["Count"] != null)
+            {
+                count = (int)Session["Count"];
+            }
+            count++;
+            Session["Count"] = count;
+            ViewBag.COUNT = count;
+            return View();
+        }
+
+        /// <summary>
+        /// 原始
+        /// </summary>
+        /// <returns></returns>
+        static int myCount = 0;
+        public ActionResult ShowCount() {
+            myCount++;
+            ViewBag.countNum = myCount;
+            return View();
+        }
+
+        
+
+
         public ActionResult DemoUQE() {
             ViewBag.Ans = "?";
             if (!string.IsNullOrEmpty(Request.Form["txtA"]))
@@ -212,10 +241,7 @@ namespace Ispan_AspNetWeb_firstPractice.Controllers
             return s;
 
         }
-        public ActionResult Index()
-        {
-            return View();
-        }
+
         public string sayHello()
         {
             //http://localhost:61327/Greeting/sayHello

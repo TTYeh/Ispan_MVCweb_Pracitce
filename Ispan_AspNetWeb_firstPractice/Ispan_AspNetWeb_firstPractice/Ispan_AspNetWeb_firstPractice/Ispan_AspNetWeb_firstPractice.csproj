@@ -114,6 +114,19 @@
     <Content Include="Global.asax" />
     <Content Include="Images\0.jpg" />
     <Content Include="Images\1.jpg" />
+    <Content Include="Script\bootstrap.js" />
+    <Content Include="Script\bootstrap.min.js" />
+    <None Include="Script\jquery-3.4.1.intellisense.js" />
+    <Content Include="Script\jquery-3.4.1.js" />
+    <Content Include="Script\jquery-3.4.1.min.js" />
+    <Content Include="Script\jquery-3.4.1.slim.js" />
+    <Content Include="Script\jquery-3.4.1.slim.min.js" />
+    <None Include="Script\jquery.validate-vsdoc.js" />
+    <Content Include="Script\jquery.validate.js" />
+    <Content Include="Script\jquery.validate.min.js" />
+    <Content Include="Script\jquery.validate.unobtrusive.js" />
+    <Content Include="Script\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Script\modernizr-2.8.3.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +197,11 @@
     <Content Include="Views\Shopping\List.cshtml" />
     <Content Include="Views\Shopping\AddToCart.cshtml" />
     <Content Include="Views\Greeting\fileUploadDemo.cshtml" />
+    <Content Include="Script\jquery-3.4.1.min.map" />
+    <Content Include="Script\jquery-3.4.1.slim.min.map" />
+    <Content Include="Views\Greeting\ShowCount.cshtml" />
+    <Content Include="Views\Greeting\Index.cshtml" />
+    <Content Include="Views\Greeting\ShowCountBySession.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
