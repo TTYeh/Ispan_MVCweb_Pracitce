@@ -29,8 +29,18 @@ namespace Ispan_AspNetWeb_firstPractice.Controllers
             }
             return View();
         }
+        public ActionResult fileUploadDemo()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult fileUploadDemo(HttpPostedFileBase photo)
+        {
+            photo.SaveAs(@"C:\Users\User\Documents\Github\Ispan_MVCweb_pracitce\Ispan_AspNetWeb_firstPractice\Ispan_AspNetWeb_firstPractice\" + photo.FileName);
+            return View();
+        }
         public ActionResult DemoAdd() {
-            ViewBag.ANS = "?";
+            ViewBag.ANS = " ? ";
             if (Request.Form["num1"] != null || Request.Form["num1"] != string.Empty)
             { 
                 double a = Convert.ToDouble(Request.Form["num1"]);

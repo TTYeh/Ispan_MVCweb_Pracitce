@@ -54,7 +54,7 @@
                 @Html.DisplayFor(modelItem => item.fPrice)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.fId }) |
+                @Html.ActionLink("編輯商品", "Edit", new { id = item.fId }) |
                 @Html.ActionLink("下架", "Delete", "Product", new { id = item.fId },
                new { onclick = "return confirm('確定要刪除嗎?')" })
             </td>
