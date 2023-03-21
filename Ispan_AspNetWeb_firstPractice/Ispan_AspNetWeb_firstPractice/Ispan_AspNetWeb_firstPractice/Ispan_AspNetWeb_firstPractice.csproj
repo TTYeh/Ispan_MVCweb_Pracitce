@@ -161,6 +161,7 @@
     <Compile Include="Models\Entity\CCustomerEntity.cs" />
     <Compile Include="Models\CCustomerRepo.cs" />
     <Compile Include="Models\Entity\cShoppingItem.cs" />
+    <Compile Include="Models\Entity\LoginInfo.cs" />
     <Compile Include="Models\SqlDataReaderExtensions.cs" />
     <Compile Include="Models\SqlDB.cs" />
     <Compile Include="Models\SqlDBInformation.cs" />
