@@ -6,6 +6,11 @@ namespace Ispan_AspCoreWeb_SecProctice.Controllers
 {
     public class ProductController : Controller
     {
+        IWebHostEnvironment _enviro;
+        public ProductController(IWebHostEnvironment p) {
+            _enviro = p;
+        }
+
         public IActionResult List(CQcustomer vm)
         {
             dbDemoContext db = new dbDemoContext();
@@ -81,5 +86,7 @@ namespace Ispan_AspCoreWeb_SecProctice.Controllers
             db.SaveChanges();
             return RedirectToAction("List");
         }
+
+        
     }
 }
