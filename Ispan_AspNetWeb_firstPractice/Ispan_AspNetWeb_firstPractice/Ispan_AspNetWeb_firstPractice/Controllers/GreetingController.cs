@@ -13,6 +13,25 @@ namespace Ispan_AspNetWeb_firstPractice.Controllers
     public class GreetingController : Controller
     {
         CCustomerRepo repo = new CCustomerRepo();
+        public ActionResult ShowCountByCookie()
+        {
+            int count = 0;
+            HttpCookie c = Request.Cookies["COUNT"];
+            if (c != null)
+            {
+                count = Convert.ToInt32(c.Value);
+            }
+            count++;
+            c = new HttpCookie("COUNT");
+            c.Value = count.ToString();
+            c.Expires = DateTime.Now.AddSeconds(20);
+            Response.Cookies.Add(c);
+
+            ViewBag.COUNT = count;
+            return View();
+        }
+
+
 
         public ActionResult ShowCountBySession()
         {
@@ -37,9 +56,6 @@ namespace Ispan_AspNetWeb_firstPractice.Controllers
             ViewBag.countNum = myCount;
             return View();
         }
-
-        
-
 
         public ActionResult DemoUQE() {
             ViewBag.Ans = "?";

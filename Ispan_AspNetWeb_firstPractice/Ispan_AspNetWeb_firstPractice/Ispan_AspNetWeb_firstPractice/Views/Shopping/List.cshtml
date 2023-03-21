@@ -7,7 +7,7 @@
 <h2>嘎啦嘎拉的商城</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("檢視購物車", "CartView")
 </p>
 <table class="table">
     <tr>
@@ -46,6 +46,7 @@
         </td>
         <td>
             @Html.ActionLink("加入購物車", "AddToCart", new { id = item.fId })
+            @Html.ActionLink("加入session購物車", "AddToSession", new { id = item.fId })
         </td>
     </tr>
         }

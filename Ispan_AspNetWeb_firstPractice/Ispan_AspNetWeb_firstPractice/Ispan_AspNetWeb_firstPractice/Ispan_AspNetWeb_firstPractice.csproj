@@ -156,8 +156,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\cDictionary.cs" />
     <Compile Include="Models\Entity\CCustomerEntity.cs" />
     <Compile Include="Models\CCustomerRepo.cs" />
+    <Compile Include="Models\Entity\cShoppingItem.cs" />
     <Compile Include="Models\SqlDataReaderExtensions.cs" />
     <Compile Include="Models\SqlDB.cs" />
     <Compile Include="Models\SqlDBInformation.cs" />
@@ -200,8 +202,10 @@
     <Content Include="Script\jquery-3.4.1.min.map" />
     <Content Include="Script\jquery-3.4.1.slim.min.map" />
     <Content Include="Views\Greeting\ShowCount.cshtml" />
-    <Content Include="Views\Greeting\Index.cshtml" />
     <Content Include="Views\Greeting\ShowCountBySession.cshtml" />
+    <Content Include="Views\Greeting\ShowCountByCookie.cshtml" />
+    <Content Include="Views\Shopping\AddToSession.cshtml" />
+    <Content Include="Views\Shopping\CartView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
