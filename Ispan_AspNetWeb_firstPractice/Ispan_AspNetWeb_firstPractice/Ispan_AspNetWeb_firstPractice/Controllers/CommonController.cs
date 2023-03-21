@@ -29,7 +29,7 @@ namespace Ispan_AspNetWeb_firstPractice.Controllers
             {
                 if (user.fPassword == vm.txtPassword)
                 {
-                    //Session["user"] = user;
+                    Session[cDictionary.SK_USER_LOGIN] = user;
                     return RedirectToAction("Home");
                 }
             }
