@@ -131,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\GreetingController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -206,6 +207,8 @@
     <Content Include="Views\Greeting\ShowCountByCookie.cshtml" />
     <Content Include="Views\Shopping\AddToSession.cshtml" />
     <Content Include="Views\Shopping\CartView.cshtml" />
+    <Content Include="Views\Common\Home.cshtml" />
+    <Content Include="Views\Common\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

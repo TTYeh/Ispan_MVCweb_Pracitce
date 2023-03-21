@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Razor.Tokenizer.Symbols;
 
 namespace Ispan_AspNetWeb_firstPractice.Models
 {
@@ -140,5 +141,11 @@ WHERE fId={entity.fId}";
             return SqlDB.Search(funConn, funcAssembler, sql).ToList();
         }
 
+        internal CCustomerEntity queryByEmail(string txtAccount)
+        {
+            string sql = $"SELECT * FROM {_tableName} " +
+                        $"WHERE fEmail like '%{txtAccount}%'" ;
+            return (CCustomerEntity)SqlDB.Search(funConn, funcAssembler, sql);
+        }
     }
 }
