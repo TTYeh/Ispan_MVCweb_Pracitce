@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Ispan_AspCoreWeb_SecProctice.Models;
+using Microsoft.AspNetCore.Mvc;
+using System.Data;
+using System.Text.Json;
 
 namespace Ispan_AspCoreWeb_SecProctice.Controllers
 {
@@ -43,7 +46,27 @@ namespace Ispan_AspCoreWeb_SecProctice.Controllers
             ViewBag.count = count;
             return View();
         }
+        public string DemoObj2Json()
+        {
+            dbDemoContext db = new dbDemoContext();
+            var datas = new Customer()
+            {
+                FId = 1,
+                FName = "John",
+                FPhone = "0912345678",
+                FEmail = "email@email.com"
+            };
+            //string json = JsonSerializer.Serialize(datas);
+            return Newtonsoft.Json.JsonConvert.SerializeObject(datas);
+        }
+        public string DemoJson2Obj()
+        {
+            string json = DemoObj2Json();
+            Customer x = JsonSerializer.Deserialize<Customer>(json);
+            return x.FName.ToString();
+            //return Newtonsoft.Json.JsonConvert.DeserializeXNode()
 
-        
+        }
+
     }
 }
