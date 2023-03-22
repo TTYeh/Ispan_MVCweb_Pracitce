@@ -41,12 +41,20 @@ namespace Ispan_AspCoreWeb_SecProctice.Controllers
             return View(cust);
         }
         [HttpPost]
-        public IActionResult Edit(Product pIn)
+        public IActionResult Edit(CProductWrap pIn)
         {
             dbDemoContext db = new dbDemoContext();
             Product prod = db.Products.FirstOrDefault(p => p.FId == pIn.FId);
             if (prod != null)
             {
+                if (pIn.photo != null)
+                {
+                    string photoName = Guid.NewGuid().ToString() + ".jpg";
+                    string path = _enviro.WebRootPath + "/images/" + photoName;
+                    FileStream fileStream = new FileStream(path, FileMode.Create);
+                    pIn.photo.CopyTo(fileStream);
+                    prod.FPhotoPath = photoName;
+                }
                 prod.FId = pIn.FId;
                 prod.FName = pIn.FName;
                 prod.FPrice = pIn.FPrice;
@@ -54,7 +62,6 @@ namespace Ispan_AspCoreWeb_SecProctice.Controllers
                 // 這裡沒有~
                 db.SaveChanges();
             }
-
             return RedirectToAction("List");
         }
         public IActionResult Delete(int? id)
