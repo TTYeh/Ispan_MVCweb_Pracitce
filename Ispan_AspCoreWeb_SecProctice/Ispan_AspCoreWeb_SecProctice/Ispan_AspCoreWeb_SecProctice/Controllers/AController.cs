@@ -30,5 +30,20 @@ namespace Ispan_AspCoreWeb_SecProctice.Controllers
             return View();
 
         }
+
+        public IActionResult showCountBySession()
+        {
+            int count = 0;
+            if (HttpContext.Session.Keys.Contains("count"))
+            {
+                count = (int)HttpContext.Session.GetInt32("count");
+            }
+            count++;
+            HttpContext.Session.SetInt32("count", count);
+            ViewBag.count = count;
+            return View();
+        }
+
+        
     }
 }
