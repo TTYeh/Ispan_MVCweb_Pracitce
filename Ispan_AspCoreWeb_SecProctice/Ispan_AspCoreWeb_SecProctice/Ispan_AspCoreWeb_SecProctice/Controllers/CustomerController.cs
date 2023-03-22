@@ -4,7 +4,7 @@ using Ispan_AspCoreWeb_SecProctice.ViewModels;
 
 namespace Ispan_AspCoreWeb_SecProctice.Controllers
 {
-    public class CustomerController : Controller
+    public class CustomerController : SuperController
     {
         public IActionResult Edit(int? id)
         {

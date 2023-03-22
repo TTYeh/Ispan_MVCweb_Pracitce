@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Ispan_AspCoreWeb_SecProctice.Models.Product>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>購物車商城</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FQty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FPrice)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FQty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FPrice)
+            </td>
+            <td>
+                @Html.ActionLink("加入購物車", "AddToCart","Shopping", new {  id=item.FId  }) |
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
